@@ -1,0 +1,22 @@
+title: The Diary of Thea Lightbearer
+description: A journal of memory, discovery, and the road ahead.
+url: https://mababao.github.io
+baseurl: /thea
+markdown: kramdown
+collections:
+  entries:
+    output: true
+    permalink: /entries/:name/
+defaults:
+  - scope:
+      path: ""
+      type: entries
+    values:
+      layout: entry
+      perspective: thea
+exclude:
+  - README.md
+  - templates
+  - Gemfile
+  - Gemfile.lock
+  - vendor

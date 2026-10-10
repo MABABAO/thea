@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<section aria-labelledby="journal-title">
+  <p class="eyebrow">The journal</p>
+  <h1 id="journal-title">Pages along the way</h1>
+  {% assign entries = site.entries | where_exp: "entry", "entry.published != false" | sort: 'order' %}
+  {% if entries.size == 0 %}
+  <div class="empty-journal"><p class="empty-title">The first page awaits.</p><p>Thea’s journal will begin here.</p></div>
+  {% else %}
+  <ol class="entry-list">
+    {% for entry in entries %}
+    <li><a href="{{ entry.url | relative_url }}"><span class="entry-number">{{ entry.order | prepend: '00' | slice: -2, 2 }}</span><span><strong>{{ entry.title | escape }}</strong>{% if entry.world_date %}<small>{{ entry.world_date | escape }}</small>{% endif %}{% assign narrator = site.data.perspectives[entry.perspective] %}{% if entry.perspective != 'thea' %}<small>{{ narrator.name | default: entry.perspective | escape }}</small>{% endif %}</span><span class="entry-arrow" aria-hidden="true">→</span></a></li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+</section>

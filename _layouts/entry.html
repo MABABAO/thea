@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="entry">
+  {% assign narrator = site.data.perspectives[page.perspective] %}
+  <p class="eyebrow">{{ narrator.name | default: page.perspective | escape }} · Entry {{ page.order }}</p>
+  <h1>{{ page.title | escape }}</h1>
+  {% if page.world_date %}<p class="world-date">{{ page.world_date | escape }}</p>{% endif %}
+  <div class="prose">{{ content }}</div>
+  {% for annotation in page.annotations %}
+    {% if annotation.revealed == true %}
+    <details class="annotation"><summary>Reveal later annotation{% if annotation.label %}: {{ annotation.label | escape }}{% endif %}</summary><div class="prose marginalia">{{ annotation.text | markdownify }}</div></details>
+    {% endif %}
+  {% endfor %}
+  {% if page.adventurers_notes and page.adventurers_notes != '' %}
+  <details class="notes"><summary>Adventurer’s Notes</summary><div class="prose">{{ page.adventurers_notes | markdownify }}</div></details>
+  {% endif %}
+</article>
+{% assign entries = site.entries | where_exp: "entry", "entry.published != false" | where: 'perspective', page.perspective | sort: 'order' %}
+{% assign previous = nil %}{% assign next = nil %}{% assign found = false %}
+{% for entry in entries %}
+  {% if found %}{% assign next = entry %}{% break %}{% endif %}
+  {% if entry.url == page.url %}{% assign found = true %}{% else %}{% assign previous = entry %}{% endif %}
+{% endfor %}
+<nav class="entry-nav" aria-label="Journal navigation">
+  {% if previous %}<a href="{{ previous.url | relative_url }}">← Previous entry</a>{% endif %}
+  <a href="{{ '/' | relative_url }}">Journal index</a>
+  {% if next %}<a href="{{ next.url | relative_url }}">Next entry →</a>{% endif %}
+</nav>
