@@ -38,4 +38,4 @@ Add a narrator to `_data/perspectives.yml` and set an entry’s `perspective` to
 
 Alegreya regular and real italic faces load through Google Fonts; CSS disables synthetic font styles. Georgia is the offline fallback.
 
-With Ruby and Bundler installed, run `bundle install`, then `bundle exec jekyll serve --baseurl /thea`. Open http://127.0.0.1:4000/thea/. Check the Pages deployment after publication. No Ruby runtime was available in the preparation environment, so a production Jekyll build still needs verification.
+With Ruby and Bundler installed, run `bundle install`, then `bundle exec jekyll serve --baseurl /thea`. Open http://127.0.0.1:4000/thea/. Check the Pages deployment after publication. The initial production Jekyll build and GitHub Pages deployment succeeded. The live index was checked in the browser, including loaded regular and italic Alegreya fonts. Entry pages will need a content check when the first real entry is added.
