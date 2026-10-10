@@ -5,13 +5,35 @@ layout: default
   <p class="eyebrow">The journal</p>
   <h1 id="journal-title">Pages along the way</h1>
   {% assign entries = site.entries | where_exp: "entry", "entry.published != false" | sort: 'order' %}
+  <div class="bookmark-return" data-bookmark-return hidden>
+    <span class="eyebrow">Your ribbon bookmark</span>
+    <p><a data-bookmark-link href="#">Return to my bookmark</a></p>
+    <button type="button" class="quiet-button" data-bookmark-clear>Remove bookmark</button>
+  </div>
   {% if entries.size == 0 %}
   <div class="empty-journal"><p class="empty-title">The first page awaits.</p><p>Thea’s journal will begin here.</p></div>
   {% else %}
-  <ol class="entry-list">
-    {% for entry in entries %}
-    <li><a href="{{ entry.url | relative_url }}"><span class="entry-number">{{ entry.order | prepend: '00' | slice: -2, 2 }}</span><span><strong>{{ entry.title | escape }}</strong>{% if entry.world_date %}<small>{{ entry.world_date | escape }}</small>{% endif %}{% assign narrator = site.data.perspectives[entry.perspective] %}{% if entry.perspective != 'thea' %}<small>{{ narrator.name | default: entry.perspective | escape }}</small>{% endif %}</span><span class="entry-arrow" aria-hidden="true">→</span></a></li>
+  <div class="journal-search" data-journal-search hidden>
+    <label for="entry-search">Find an entry by title</label>
+    <input id="entry-search" type="search" placeholder="Search the journal…" autocomplete="off">
+    <p data-search-status role="status" aria-live="polite"></p>
+  </div>
+  {% assign chapters = entries | group_by: 'chapter' %}
+  {% for chapter in chapters %}
+  <section class="chapter" data-chapter>
+    {% if chapter.name != '' %}<h2>{{ chapter.name | escape }}</h2>{% endif %}
+    <ol class="entry-list">
+    {% for entry in chapter.items %}
+    <li data-entry-title="{{ entry.title | escape }}"><a href="{{ entry.url | relative_url }}"><span class="entry-number">{{ entry.order }}</span><span><strong>{{ entry.title | escape }}</strong>{% if entry.world_date %}<small>{{ entry.world_date | escape }}</small>{% endif %}{% assign narrator = site.data.perspectives[entry.perspective] %}{% if entry.perspective != 'thea' %}<small>{{ narrator.name | default: entry.perspective | escape }}</small>{% endif %}</span><span class="entry-arrow" aria-hidden="true">→</span></a></li>
     {% endfor %}
-  </ol>
+    </ol>
+  </section>
+  {% endfor %}
   {% endif %}
+  <p data-bookmark-status role="status" aria-live="polite" class="bookmark-status"></p>
+  <aside class="opening-notice" aria-label="About this journal">
+    <p>An unofficial fan journal following gameplay in World of Warcraft Forever, with original narration and interpretation by Marc Abelha.</p>
+    <p>World of Warcraft belongs to Blizzard Entertainment and its respective rights holders. This journal is independently authored and is not affiliated with or endorsed by Blizzard or the server operators. Author commentary and opinions are my own.</p>
+    <p><a href="{{ '/credits/' | relative_url }}">Credits &amp; rights</a></p>
+  </aside>
 </section>

@@ -2,6 +2,7 @@
 title: "Entry title"
 order: 1
 perspective: thea
+chapter: ""
 world_date: ""
 published: false
 annotations: []

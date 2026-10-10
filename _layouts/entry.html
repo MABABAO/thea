@@ -1,11 +1,15 @@
 ---
 layout: default
 ---
-<article class="entry">
+<article class="entry" data-diary-entry data-entry-title="{{ page.title | escape }}">
   {% assign narrator = site.data.perspectives[page.perspective] %}
   <p class="eyebrow">{{ narrator.name | default: page.perspective | escape }} · Entry {{ page.order }}</p>
   <h1>{{ page.title | escape }}</h1>
   {% if page.world_date %}<p class="world-date">{{ page.world_date | escape }}</p>{% endif %}
+  <div class="bookmark-tools" data-bookmark-tools hidden>
+    <button type="button" data-bookmark-save>Place my bookmark here</button>
+    <p class="bookmark-status" data-bookmark-status role="status" aria-live="polite"></p>
+  </div>
   <div class="prose">{{ content }}</div>
   {% for annotation in page.annotations %}
     {% if annotation.revealed == true %}
@@ -27,3 +31,5 @@ layout: default
   <a href="{{ '/' | relative_url }}">Journal index</a>
   {% if next %}<a href="{{ next.url | relative_url }}">Next entry →</a>{% endif %}
 </nav>
+
+<div class="bookmark-end" data-bookmark-tools hidden><button type="button" data-bookmark-save>Place my bookmark here</button></div>

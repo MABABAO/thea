@@ -39,3 +39,11 @@ Add a narrator to `_data/perspectives.yml` and set an entry’s `perspective` to
 Alegreya regular and real italic faces load through Google Fonts; CSS disables synthetic font styles. Georgia is the offline fallback.
 
 With Ruby and Bundler installed, run `bundle install`, then `bundle exec jekyll serve --baseurl /thea`. Open http://127.0.0.1:4000/thea/. Check the Pages deployment after publication. The initial production Jekyll build and GitHub Pages deployment succeeded. The live index was checked in the browser, including loaded regular and italic Alegreya fonts. Entry pages will need a content check when the first real entry is added.
+
+## Navigation and rights
+
+The index shows a short fan-journal notice; `/credits/` contains the full attribution, rights notice, opinions statement, and bookmark explanation. Every page links there in its footer.
+
+Set optional `chapter: "Chapter I — A beginning"` on entries to group the index. Chapters appear in the order first encountered in the sorted entry list; entries within each chapter remain ordered. Leave the field empty for an unheaded group. Title search hides nonmatching entries and empty chapter groups. Without JavaScript, all entries remain visible.
+
+The ribbon saves one entry and reading position using browser-local storage. It saves only when the reader explicitly presses the bookmark button and resumes only through the return link. Annotation/notes disclosure state is never saved. No tracking service or account is involved. Storage failure produces an explanatory message; normal permanent links still work.
