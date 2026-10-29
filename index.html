@@ -29,6 +29,12 @@ layout: default
     </ol>
   </section>
   {% endfor %}
+  {% assign chapter_three_entries = entries | where: 'chapter', 'To Tame a Land' %}
+  {% if chapter_three_entries.size == 0 %}
+  <section class="chapter" data-chapter>
+    <h2>To Tame a Land</h2>
+  </section>
+  {% endif %}
   {% endif %}
   <p data-bookmark-status role="status" aria-live="polite" class="bookmark-status"></p>
   <aside class="opening-notice" aria-label="About this journal">
