@@ -27,4 +27,10 @@ When I got back to Thunder Bluff I felt strong enough and planned to go back to 
 
 Of course we found the only gloomy place in that entire marvelous region to place an undead paladin trainer.  Oh well.
 
-Time to test if I am strong to face the horrors of Silverpine. I have been so infatuated with the beauty around me, I confess I am a little bit ashamed, if there's a place in need of a paladin, it is Silverpine Forest. There I should go now.
+Time to find out whether all this training has prepared me for Silverpine.
+
+I have been rather reluctant to leave these open skies. There always seemed to be another person needing help, another place worth seeing. The help was needed. But perhaps I was also grateful for reasons to stay.
+
+Silverpine frightened me. It probably still will.
+
+I should go back.
